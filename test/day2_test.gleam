@@ -16,5 +16,5 @@ pub fn day2_part2_test() {
 }
 
 pub fn day2_part2_small_test() {
-  assert day2.part2("12121212121212-12121212121212") == 12121212121212
+  assert day2.part2("12121212121212-12121212121212") == 12_121_212_121_212
 }
