@@ -21,3 +21,11 @@ L82
 pub fn day1_part1_test() {
   assert day1.part1(day1_input) == 3
 }
+
+pub fn day1_part2_test() {
+  assert day1.part2(day1_input) == 6
+}
+
+pub fn day1_part2_small_example_test() {
+  assert day1.part2("R1000") == 10
+}
