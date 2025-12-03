@@ -18,15 +18,13 @@ fn process_input(input input: String, pattern pattern: String) -> Int {
   |> list.map(string.trim)
   |> list.filter_map(parse_range)
   |> list.flat_map(expand_range)
-  |> list.filter(fn(id) { regexp.check(regex, id) })
-  |> list.filter_map(fn(id) { int.parse(id) })
+  |> list.filter(regexp.check(regex, _))
+  |> list.filter_map(int.parse)
   |> list.fold(0, fn(acc, id) { acc + id })
 }
 
 fn parse_range(range: String) -> Result(#(Int, Int), Nil) {
-  let bounds =
-    string.split(range, "-")
-    |> list.map(fn(n) { int.parse(n) })
+  let bounds = string.split(range, "-") |> list.map(int.parse)
 
   case bounds {
     [Ok(start), Ok(end)] -> Ok(#(start, end))
@@ -36,6 +34,5 @@ fn parse_range(range: String) -> Result(#(Int, Int), Nil) {
 
 fn expand_range(range: #(Int, Int)) -> List(String) {
   let #(start, end) = range
-  list.range(start, end)
-  |> list.map(int.to_string)
+  list.range(start, end) |> list.map(int.to_string)
 }
